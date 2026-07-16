@@ -1,0 +1,387 @@
+/* Meet the Founder — reference placement + BrandHive theme */
+#about,
+#about *,
+#about *::before,
+#about *::after {
+  box-sizing: border-box;
+}
+
+#about {
+  --about-ink: #0a0a0a;
+  --about-muted: rgba(10, 10, 10, 0.6);
+  --about-bg: #f5f5f5;
+  --about-white: #ffffff;
+  --about-panel: #ececec;
+  position: relative;
+  width: 100%;
+  padding: 90px 36px;
+  overflow: hidden;
+  background: var(--about-bg);
+  color: var(--about-ink);
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#about.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about .about__container {
+  position: relative;
+  width: 100%;
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+/* Section label — matches Testimonials / Why choose us (+ icon + text) */
+#about .about__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  color: var(--about-ink);
+}
+
+#about .about__label-icon {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  background: var(--about-ink);
+  overflow: hidden;
+}
+
+#about .about__label-icon::before,
+#about .about__label-icon::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 4px);
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 8px;
+  background: var(--about-white);
+}
+
+#about .about__label-icon::after {
+  transform: rotate(90deg);
+}
+
+#about .about__layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  column-gap: clamp(2rem, 4vw, 4rem);
+  row-gap: 2rem;
+  width: 100%;
+}
+
+#about .about__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 440px;
+  padding: 8px 0;
+}
+
+#about .about__small-image {
+  display: block;
+  width: 218px;
+  height: 136px;
+  margin: 0 0 1.35rem;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--about-panel);
+}
+
+/* Name + role — Inter SemiBold, uppercase, theme spacing */
+#about .about__eyebrow {
+  margin: 0 0 1.15rem;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#about .about__eyebrow-line {
+  display: block;
+}
+
+#about .about__eyebrow-line--name {
+  color: var(--about-ink);
+  font-weight: 700;
+}
+
+#about .about__eyebrow-line--role {
+  margin-top: 0.25rem;
+  color: var(--about-muted);
+  font-weight: 600;
+}
+
+/* Body — matches site paragraph preset */
+#about .about__body {
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.04em;
+}
+
+#about .about__body p {
+  margin: 0 0 1rem;
+  color: var(--about-muted);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+#about .about__body p strong,
+#about .about__body .about__em {
+  color: var(--about-ink);
+  font-weight: 600;
+}
+
+#about .about__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+/* Theme pill buttons (site CTA style) */
+#about .about__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid var(--about-ink);
+  border-radius: 50px;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease;
+}
+
+#about .about__button--outline {
+  background: transparent;
+  color: var(--about-ink);
+}
+
+#about .about__button--outline:hover,
+#about .about__button--outline:focus-visible {
+  background: var(--about-ink);
+  color: var(--about-white);
+}
+
+#about .about__button--solid {
+  background: var(--about-ink);
+  color: var(--about-white);
+}
+
+#about .about__button--solid:hover,
+#about .about__button--solid:focus-visible {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: var(--about-white);
+}
+
+#about .about__button:focus-visible {
+  outline: 2px solid rgba(10, 10, 10, 0.28);
+  outline-offset: 3px;
+}
+
+#about .about__arrow {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 200ms ease;
+}
+
+#about .about__button:hover .about__arrow,
+#about .about__button:focus-visible .about__arrow {
+  transform: translateX(4px);
+}
+
+#about .about__visual {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* Full image, no cropping — natural aspect ratio, capped width */
+#about .about__large-image {
+  display: block;
+  width: 100%;
+  max-width: clamp(320px, 34vw, 460px);
+  height: auto;
+  border-radius: 18px;
+  background: var(--about-panel);
+}
+
+/*
+  Reference placement:
+  stacked right-aligned Playfair headline on the seam —
+  most of the stack on the left, a light overlap onto the photo.
+*/
+#about .about__headline {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 58%;
+  width: clamp(260px, 36vw, 520px);
+  margin: 0;
+  color: var(--about-ink);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 5.8vw, 5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  word-spacing: 0.18em;
+  text-align: right;
+  transform: translate(-72%, -52%);
+  pointer-events: none;
+}
+
+#about .about__headline-line {
+  display: block;
+}
+
+#about .about__headline-line--caps {
+  font-style: normal;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+#about .about__headline-line--italic {
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+#about .about__headline-line--plain {
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  #about {
+    padding: 70px 30px;
+  }
+
+  #about .about__layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    column-gap: 1.75rem;
+  }
+
+  #about .about__copy {
+    max-width: none;
+  }
+
+  #about .about__large-image {
+    max-width: clamp(280px, 40vw, 400px);
+  }
+
+  #about .about__headline {
+    left: 56%;
+    width: clamp(240px, 40vw, 420px);
+    font-size: clamp(2.4rem, 5.2vw, 3.75rem);
+    transform: translate(-70%, -52%);
+  }
+}
+
+@media (max-width: 809.98px) {
+  #about {
+    padding: 60px 20px;
+  }
+
+  #about .about__label {
+    margin-bottom: 1.75rem;
+    font-size: 13px;
+  }
+
+  #about .about__layout {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+
+  #about .about__copy {
+    order: 1;
+    max-width: none;
+    padding: 0;
+  }
+
+  #about .about__headline {
+    position: static;
+    order: 2;
+    width: 100%;
+    transform: none;
+    text-align: left;
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+  }
+
+  #about .about__visual {
+    order: 3;
+    justify-content: center;
+  }
+
+  #about .about__large-image {
+    max-width: min(100%, 420px);
+    border-radius: 14px;
+  }
+
+  #about .about__small-image {
+    width: min(218px, 72vw);
+    height: min(136px, 45vw);
+    border-radius: 14px;
+  }
+
+  #about .about__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #about {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  #about .about__arrow {
+    transition: none;
+  }
+}
+
+section.framer-1dgpip1:not(#about) {
+  display: none !important;
+}

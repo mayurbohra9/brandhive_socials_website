@@ -70,7 +70,7 @@
         "Thought Leadership",
         "Audience Growth",
       ],
-      image: "assets/images/vGSJoy0fkCYvuK5CETUzS64NNo.jpg",
+      image: "assets/images/service-linkedin-personal-branding.jpg",
     },
     {
       num: "002",
@@ -85,7 +85,7 @@
         "Content Marketing",
         "Brand Strategy",
       ],
-      image: "assets/images/TQUaM9GTresksymLH16ncQaPo.jpg",
+      image: "assets/images/service-linkedin-company-branding.jpg",
     },
     {
       num: "003",
@@ -100,7 +100,7 @@
         "Sales Funnel",
         "Business Growth",
       ],
-      image: "assets/images/UPqJOHQLdYtNuK2jee5437Lno.jpg",
+      image: "assets/images/service-linkedin-lead-generation.jpg",
     },
     {
       num: "004",
@@ -115,7 +115,7 @@
         "Institutions",
         "Professional Growth",
       ],
-      image: "assets/images/r3DvXiPExOamPrqqTNfWM1K9o4.jpg",
+      image: "assets/images/service-linkedin-workshops.jpg",
     },
     {
       num: "005",
@@ -130,49 +130,62 @@
         "Audience Reach",
         "Thought Leadership",
       ],
-      image: "assets/images/HlvuJF9yIQ3Q8fP86EjFIq5ExE.jpg",
+      image: "assets/images/service-linkedin-influencer-marketing.jpg",
     },
   ];
   var PROJECT_SUBTITLE =
-    "LinkedIn branding, lead generation, workshops, and creator campaigns for founders and B2B teams. A look at recent engagements.";
+    "Selected LinkedIn success stories across personal branding, company positioning, lead generation, workshops, and influencer campaigns.";
   var PROJECT_CARDS = [
     {
       href: "./projects/boltshift",
-      title: "Authority.",
-      year: "2025",
-      image: "assets/images/vGSJoy0fkCYvuK5CETUzS64NNo.jpg",
+      title: "Personal Branding.",
+      year: "2026",
+      image: "assets/images/project-linkedin-personal-branding.jpg",
     },
     {
       href: "./projects/ephemeral",
-      title: "Presence.",
-      year: "2025",
-      image: "assets/images/TQUaM9GTresksymLH16ncQaPo.jpg",
+      title: "Company Branding.",
+      year: "2026",
+      image: "assets/images/project-linkedin-company-branding.jpg",
     },
     {
       href: "./projects/powersurge",
-      title: "Pipeline.",
-      year: "2025",
-      image: "assets/images/UPqJOHQLdYtNuK2jee5437Lno.jpg",
+      title: "Lead Generation.",
+      year: "2026",
+      image: "assets/images/project-linkedin-lead-generation.jpg",
     },
     {
       href: "./projects/mastermail",
-      title: "Campus.",
-      year: "2024",
-      image: "assets/images/r3DvXiPExOamPrqqTNfWM1K9o4.jpg",
+      title: "Workshops & Seminars.",
+      year: "2026",
+      image: "assets/images/project-linkedin-workshops.jpg",
     },
     {
       href: "./projects/warpspeed",
-      title: "Amplify.",
-      year: "2025",
-      image: "assets/images/HlvuJF9yIQ3Q8fP86EjFIq5ExE.jpg",
+      title: "Influencer Marketing.",
+      year: "2026",
+      image: "assets/images/project-linkedin-influencer-marketing.jpg",
     },
     {
       href: "./projects/cloudwatch",
-      title: "Immersion.",
-      year: "2024",
-      image: "assets/images/6girwIRKdg1doDEWAHr4oDIbroU.jpg",
+      title: "Integrated LinkedIn Growth.",
+      year: "2026",
+      image: "assets/images/project-linkedin-growth-campaign.jpg",
     },
   ];
+  var WHY_CHOOSE = {
+    headingLead: "Proven LinkedIn results for every engagement,",
+    headingMuted: "with a focus on authority and qualified leads.",
+    cta: "Your LinkedIn growth starts with a conversation. Let's talk today.",
+    bodyStrong: "No fluff, just LinkedIn results.",
+    bodyRest:
+      " Strategy, content, and outreach that make your brand work harder. We deliver personal branding, company pages, lead gen, workshops, and influencer campaigns—project after project.",
+    card1Title: "LinkedIn programs delivered",
+    card1Desc:
+      "We've delivered 50+ LinkedIn branding, lead-gen, workshop, and influencer programs that create real business conversations.",
+    card2Title: "Client satisfaction rate",
+    image: "assets/images/service-linkedin-personal-branding.jpg",
+  };
 
   function normalizeCopyright(value) {
     if (!value) return value;
@@ -547,6 +560,92 @@
     });
   }
 
+  function fixAdvantages() {
+    var section = document.querySelector(
+      'section[data-framer-name="Advantages"]',
+    );
+    if (!section) return;
+
+    // Heading: lead + muted span
+    var heading = section.querySelector(
+      '[data-framer-name="Section Description"] h2',
+    );
+    if (heading) {
+      var muted = heading.querySelector("span");
+      // Replace only the lead text node(s)
+      var leadParts = [];
+      heading.childNodes.forEach(function (n) {
+        if (n.nodeType === 3) leadParts.push(n);
+      });
+      if (leadParts.length) {
+        leadParts[0].nodeValue = WHY_CHOOSE.headingLead + " ";
+        for (var i = 1; i < leadParts.length; i++) leadParts[i].nodeValue = "";
+      } else {
+        heading.insertBefore(
+          document.createTextNode(WHY_CHOOSE.headingLead + " "),
+          heading.firstChild,
+        );
+      }
+      if (muted) muted.textContent = WHY_CHOOSE.headingMuted;
+    }
+
+    // CTA blurb on the image card
+    section.querySelectorAll(".framer-j3uvcp p").forEach(function (p) {
+      if (/digital journey|LinkedIn growth starts/i.test(p.textContent)) {
+        p.textContent = WHY_CHOOSE.cta;
+      }
+    });
+
+    // Supporting paragraph under Items
+    section.querySelectorAll(".framer-1xbqwt4 p, .framer-k82g9i p").forEach(
+      function (p) {
+        if (!/No fluff|LinkedIn results/i.test(p.textContent)) return;
+        var strong = p.querySelector("span");
+        if (strong) {
+          strong.textContent = WHY_CHOOSE.bodyStrong;
+          // Clear and rebuild rest as text after the span
+          var after = "";
+          p.childNodes.forEach(function (n) {
+            if (n === strong) return;
+            if (n.nodeType === 3) after += n.nodeValue;
+          });
+          // Remove trailing text nodes then append new rest
+          Array.prototype.slice.call(p.childNodes).forEach(function (n) {
+            if (n !== strong) p.removeChild(n);
+          });
+          p.appendChild(document.createTextNode(WHY_CHOOSE.bodyRest));
+        } else {
+          p.textContent = WHY_CHOOSE.bodyStrong + WHY_CHOOSE.bodyRest;
+        }
+      },
+    );
+
+    // Stat cards
+    section.querySelectorAll(".framer-14rc0hg p").forEach(function (p) {
+      var t = p.textContent.trim();
+      if (/Successful projects|LinkedIn programs/i.test(t)) {
+        p.textContent = WHY_CHOOSE.card1Title;
+      } else if (/Customer satisfaction|Client satisfaction/i.test(t)) {
+        p.textContent = WHY_CHOOSE.card2Title;
+      }
+    });
+
+    section.querySelectorAll(".framer-1fnepwh p").forEach(function (p) {
+      if (/50\+|LinkedIn branding|projects that help/i.test(p.textContent)) {
+        p.textContent = WHY_CHOOSE.card1Desc;
+      }
+    });
+
+    // CTA card image
+    section
+      .querySelectorAll('.framer-1lfeovs[data-framer-name="Image"] img')
+      .forEach(function (img) {
+        img.setAttribute("src", WHY_CHOOSE.image);
+        img.removeAttribute("srcset");
+        img.alt = "LinkedIn personal branding consultation";
+      });
+  }
+
   function isInsidePreloader(node) {
     var el = node.nodeType === 3 ? node.parentElement : node;
     return !!(
@@ -659,6 +758,7 @@
     fixFaq();
     fixServiceCards();
     fixProjects();
+    fixAdvantages();
   }
 
   var scheduled = null;
