@@ -1,0 +1,326 @@
+/* Reusable utilities extracted from repeated inline styles.
+   Keep Framer's runtime/animation inline styles untouched; only static
+   layout/media helpers live here to avoid UI regressions. */
+
+/* Navbar brand: bee logo before BrandHive word, rotated 15deg clockwise. */
+header .framer-kxb2zt-container .framer-uNobG {
+  overflow: visible !important;
+}
+
+header .framer-kxb2zt-container .framer-uNobG::before {
+  content: "";
+  flex: none;
+  display: block;
+  width: 28px;
+  height: 28px;
+  background-color: #105b63;
+  background-image: none;
+  -webkit-mask: url("../assets/icons/brandhive-bee-logo.png") center / contain
+    no-repeat;
+  mask: url("../assets/icons/brandhive-bee-logo.png") center / contain no-repeat;
+  transform: rotate(15deg);
+  transform-origin: center center;
+}
+
+@media (max-width: 809.98px) {
+  header .framer-kxb2zt-container .framer-uNobG::before {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Remove decorative year / range copyright badges; footer keeps its own line.
+   Scoped to known empty year slots — avoid broad class kills that collapse layout. */
+[data-framer-name="2026"] {
+  display: none !important;
+}
+
+/* Hide emptied non-footer CopyrightText slots (menu / hero / contact). */
+.framer-1gif4l1,
+.framer-lv0oqx,
+.framer-1294aeh,
+.framer-uzbb8i {
+  display: none !important;
+}
+
+/* Hero bottom tagline: center-align. */
+.framer-hsxobt .framer-qj2zoe,
+.framer-hsxobt .framer-1h9hge5,
+.framer-hsxobt .framer-1h9hge5 h1,
+.framer-hsxobt .framer-1h9hge5 .framer-text {
+  text-align: center !important;
+  --framer-text-alignment: center !important;
+}
+
+/* Hero services list: left-align + support 5th item. */
+.framer-rkHvP .framer-o59pbo {
+  align-items: flex-start !important;
+  overflow: visible !important;
+}
+
+.framer-rkHvP .framer-o59pbo .framer-text,
+.framer-rkHvP .framer-o59pbo p {
+  text-align: left !important;
+  --framer-text-alignment: left !important;
+}
+
+.framer-rkHvP .framer-bh-svc5 {
+  flex-flow: row;
+  flex: none;
+  place-content: center flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: min-content;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
+
+/* Services section cards: premium single-image + Enquire CTA */
+.framer-8d5aox [data-framer-name="Number"] {
+  display: none !important;
+}
+
+/* Projects section: hide project count badge */
+.framer-hv8rku [data-framer-name="Project count"] {
+  display: none !important;
+}
+
+/* Projects heading: don't clip descenders (j in Projects.) */
+.framer-hv8rku [data-framer-name="Heading"],
+.framer-hv8rku .framer-7l5kym {
+  overflow: visible !important;
+}
+
+.framer-hv8rku [data-framer-name="Heading"] h2,
+.framer-hv8rku .framer-7l5kym h2 {
+  overflow: visible !important;
+  line-height: 1.1 !important;
+}
+
+.framer-8d5aox [data-framer-name="Images"] [data-framer-name="Image-1"],
+.framer-8d5aox [data-framer-name="Images"] [data-framer-name="Image-2"] {
+  display: none !important;
+}
+
+.framer-8d5aox [data-framer-name="Images"] [data-framer-name="Image"] {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+}
+
+.framer-8d5aox [data-framer-name="Images"] [data-framer-name="Image"] img {
+  object-fit: cover !important;
+  border-radius: 14px !important;
+}
+
+.framer-8d5aox [data-framer-name="Items"] {
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+/* Hide empty trademark slot left after removing ® from the hero title. */
+.framer-rkHvP .framer-1o25fny {
+  display: none !important;
+  width: 0 !important;
+}
+
+/*
+  Hero BrandHive → left marked area only.
+  Left-align the title block and size the word so it sits in that zone.
+  Socials: widen so leading S is not clipped. Nothing else changes.
+*/
+.framer-rkHvP .framer-al5dzj {
+  align-self: flex-start !important;
+  justify-content: flex-start !important;
+  place-content: flex-start flex-start !important;
+  width: 62% !important;
+  max-width: 640px !important;
+  overflow: visible !important;
+}
+
+.framer-rkHvP .framer-13yua5i {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.framer-rkHvP svg.framer-j23lg0,
+.framer-rkHvP svg.framer-1no2xs1 {
+  overflow: visible !important;
+  left: 0 !important;
+}
+
+.framer-rkHvP svg.framer-j23lg0 foreignObject,
+.framer-rkHvP svg.framer-1no2xs1 foreignObject {
+  overflow: visible !important;
+  transform-origin: left center !important;
+}
+
+.framer-rkHvP svg.framer-j23lg0 p.framer-text,
+.framer-rkHvP svg.framer-1no2xs1 p.framer-text {
+  --framer-font-size: 196px !important;
+  font-size: 196px !important;
+}
+
+/* Socials: show full leading S (right-aligned word was too wide for 20% box) */
+.framer-rkHvP .framer-gxz29i {
+  overflow: visible !important;
+}
+
+.framer-rkHvP .framer-11hmflf {
+  width: 34% !important;
+  min-width: 150px !important;
+  overflow: visible !important;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .framer-rkHvP .framer-al5dzj {
+    width: 68% !important;
+    max-width: 520px !important;
+  }
+
+  .framer-rkHvP svg.framer-j23lg0 p.framer-text,
+  .framer-rkHvP svg.framer-1no2xs1 p.framer-text {
+    --framer-font-size: 84px !important;
+    font-size: 84px !important;
+  }
+
+  .framer-rkHvP .framer-11hmflf {
+    width: 38% !important;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .framer-rkHvP .framer-al5dzj {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .framer-rkHvP svg.framer-j23lg0 p.framer-text,
+  .framer-rkHvP svg.framer-1no2xs1 p.framer-text {
+    --framer-font-size: 72px !important;
+    font-size: 72px !important;
+  }
+
+  .framer-rkHvP .framer-11hmflf {
+    width: 42% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Footer logo: BrandHive is longer than original fabrica®.
+   Keep font size; shift left so the full word fits in view. */
+.framer-8QVl3 .framer-11bxfef,
+.framer-8QVl3 .framer-755gr8 {
+  overflow: visible !important;
+}
+
+.framer-8QVl3 .framer-pbcowa,
+.framer-8QVl3 .framer-1w026i8 {
+  overflow: visible !important;
+}
+
+.framer-8QVl3 .framer-1w026i8 {
+  width: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+.framer-8QVl3 .framer-1w026i8 text,
+.framer-8QVl3 .framer-1w026i8 foreignObject,
+.framer-8QVl3 .framer-1w026i8 p {
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+/* Desktop/tablet: pull BrandHive (+ Socials) left so "e" is not clipped */
+@media (min-width: 810px) {
+  .framer-8QVl3 .framer-pbcowa {
+    transform: translateX(-200px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .framer-8QVl3 .framer-pbcowa {
+    transform: translateX(-170px);
+  }
+}
+
+/* Footer: push "Socials" to the right under BrandHive */
+.framer-8QVl3 .framer-pbcowa .framer-x47oxk {
+  width: 100% !important;
+  align-self: stretch !important;
+  text-align: right !important;
+}
+
+.framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
+  text-align: right !important;
+  width: 100% !important;
+}
+
+/* Footer bottom bar: hide Privacy Policy + Terms of Service only */
+.framer-8QVl3 .framer-tlsn55 [data-framer-name="Links"],
+.framer-8QVl3 .framer-tlsn55 [data-framer-name="2"] {
+  display: none !important;
+}
+
+/* Hide Team section above FAQ */
+.framer-8QVl3 section[data-framer-name="Team"],
+.framer-8QVl3 .framer-1l4ytm4 {
+  display: none !important;
+}
+
+.bh-abs-fill {
+  position: absolute;
+  border-radius: inherit;
+  corner-shape: inherit;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bh-media-cover,
+.bh-media-contain,
+.bh-media-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  corner-shape: inherit;
+  object-position: center;
+}
+
+.bh-media-cover {
+  object-fit: cover;
+}
+
+.bh-media-contain {
+  object-fit: contain;
+}
+
+.bh-media-fill {
+  object-fit: fill;
+}
+
+.bh-relative-hidden-fill {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Force-hide leftover Framer promo/template badges across all breakpoints. */
+#__framer-badge-container,
+[data-framer-name="Delete me!"],
+[name="Delete me!"],
+/* Footer attribution: "Built in Framer" + "Created by Anatolii Dmitrienko" */
+.framer-1dor1xq-container,
+.framer-joiwk4-container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
