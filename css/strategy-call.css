@@ -17,7 +17,7 @@ section[data-framer-name="Bento"].framer-15o920v {
   --strategy-muted: rgba(255, 255, 255, 0.62);
   position: relative;
   width: 100%;
-  padding: clamp(88px, 10vw, 140px) 36px;
+  padding: clamp(88px, 10vw, 140px) 36px clamp(36px, 4vw, 56px);
   overflow: hidden;
   background: var(--strategy-bg);
   font-family: "Inter", "Inter Placeholder", sans-serif;
@@ -410,7 +410,7 @@ section[data-framer-name="Bento"].framer-15o920v {
 
 @media (max-width: 809px) {
   #strategy-call {
-    padding: 72px 20px;
+    padding: 72px 20px 32px;
   }
 
   #strategy-call .strategy-call__shell {

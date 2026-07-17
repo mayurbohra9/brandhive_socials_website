@@ -324,6 +324,44 @@ footer [data-framer-name="Contact"] [data-bh-email="join us"] {
   margin-top: 36px;
 }
 
+/* Footer only: Framer's email CTA component is min-content by default, which
+   collapses the email cards after the heading/address text is split into spans. */
+footer [data-framer-name="Contact"] [data-bh-email] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+footer [data-framer-name="Contact"] [data-bh-email] > a.framer-XRBqV {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+footer [data-framer-name="Contact"] .framer-149v3n5-container {
+  flex: 0 0 26px !important;
+  width: 26px !important;
+  height: 26px !important;
+  margin-top: 4px !important;
+  overflow: visible !important;
+}
+
+footer [data-framer-name="Contact"] .framer-mF96D.framer-ul5qem {
+  width: 26px !important;
+  height: 26px !important;
+  overflow: visible !important;
+}
+
+footer [data-framer-name="Contact"] .framer-17vqepl,
+footer [data-framer-name="Contact"] .framer-29jocm {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
 footer [data-framer-name="Contact"] [data-framer-name="Email Address"],
 footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text,
 [data-framer-name="Bottom"] [data-framer-name="Contact"] [data-framer-name="Email Address"],
@@ -347,8 +385,8 @@ footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-t
   color: #0a0a0a !important;
   opacity: 1 !important;
   visibility: visible !important;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text,
@@ -364,7 +402,18 @@ footer [data-framer-name="Contact"] .bh-email-address,
 
 @media (max-width: 809.98px) {
   footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text {
-    font-size: 16px !important;
+    font-size: 18px !important;
+  }
+
+  footer [data-framer-name="Contact"] [data-bh-email="join us"] {
+    margin-top: 24px;
+  }
+
+  footer [data-framer-name="Contact"] .framer-149v3n5-container,
+  footer [data-framer-name="Contact"] .framer-mF96D.framer-ul5qem {
+    flex-basis: 22px !important;
+    width: 22px !important;
+    height: 22px !important;
   }
 }
 

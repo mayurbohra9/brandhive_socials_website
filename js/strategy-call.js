@@ -41,8 +41,12 @@
     );
     if (!pricing || !pricing.parentNode) return;
 
+    // Keep Strategy Call before the quote bridge (when present), else Packages.
+    var anchor =
+      document.getElementById("quote-bridge") || pricing;
+
     var section = document.getElementById("strategy-call");
-    if (section && section.nextElementSibling === pricing) return;
+    if (section && section.nextElementSibling === anchor) return;
 
     mutating = true;
     try {
@@ -51,7 +55,7 @@
         wrap.innerHTML = markup;
         section = wrap.firstElementChild;
       }
-      pricing.parentNode.insertBefore(section, pricing);
+      pricing.parentNode.insertBefore(section, anchor);
     } finally {
       mutating = false;
     }

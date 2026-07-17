@@ -1,0 +1,127 @@
+/* Quote bridge — between Strategy Call and Packages */
+
+#quote-bridge,
+#quote-bridge *,
+#quote-bridge *::before,
+#quote-bridge *::after {
+  box-sizing: border-box;
+}
+
+#quote-bridge {
+  --qb-bg: #f5f5f5;
+  --qb-ink: #0a0a0a;
+  --qb-muted: rgba(10, 10, 10, 0.5);
+  position: relative;
+  width: 100%;
+  padding: clamp(28px, 3.5vw, 48px) 36px clamp(72px, 10vw, 120px);
+  background: var(--qb-bg);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  overflow: hidden;
+}
+
+#quote-bridge .quote-bridge__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#quote-bridge .quote-bridge__mark {
+  margin: 0;
+  color: var(--qb-ink);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  opacity: 0.18;
+  user-select: none;
+}
+
+#quote-bridge .quote-bridge__text {
+  margin: 0;
+  color: var(--qb-ink);
+  font-size: clamp(1.65rem, 3.6vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+#quote-bridge .quote-bridge__word {
+  display: inline;
+  position: relative;
+  white-space: nowrap;
+}
+
+#quote-bridge .quote-bridge__word-inner {
+  display: inline-block;
+  color: var(--qb-ink);
+  transition:
+    opacity 280ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+#quote-bridge .quote-bridge__word-inner.is-exit {
+  opacity: 0;
+  transform: translateY(-0.35em);
+}
+
+#quote-bridge .quote-bridge__word-inner.is-enter {
+  opacity: 0;
+  transform: translateY(0.35em);
+  animation: quote-bridge-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes quote-bridge-word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #quote-bridge .quote-bridge__word-inner {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+#quote-bridge .quote-bridge__attr {
+  margin: 0;
+  color: var(--qb-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#quote-bridge .quote-bridge__rule {
+  width: 48px;
+  height: 2px;
+  margin: 0.25rem 0 0;
+  background: var(--qb-ink);
+  opacity: 0.2;
+}
+
+@media (max-width: 809.98px) {
+  #quote-bridge {
+    padding: 28px 20px 64px;
+  }
+
+  #quote-bridge .quote-bridge__text {
+    font-size: clamp(1.4rem, 6.5vw, 1.85rem);
+  }
+}
