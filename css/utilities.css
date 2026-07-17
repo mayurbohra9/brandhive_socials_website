@@ -438,13 +438,110 @@ footer [data-framer-name="Social"] a[href*="dribbble"] {
   overflow: hidden;
 }
 
-/* Testimonials: 7 reviews. Let the card grid wrap to extra rows and let
-   cards grow to fit full quotes (no clipping). Design/typography unchanged;
-   only card padding is slightly reduced so longer reviews fit naturally. */
+/* Testimonials: 7 reviews. Intro card stays fixed; review cards marquee. */
 .framer-rkHvP .framer-mr0vhf {
   height: auto !important;
   grid-template-rows: none !important;
   grid-auto-rows: auto !important;
+}
+
+.framer-rkHvP .framer-mr0vhf.bh-testimonials-layout {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  grid-template-columns: none !important;
+}
+
+.framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > .framer-1gh0xjw,
+.framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > [data-framer-name="Intro"] {
+  flex: 0 0 clamp(240px, 24%, 360px) !important;
+  width: clamp(240px, 24%, 360px) !important;
+  max-width: 360px;
+  height: auto !important;
+  min-height: 430px;
+  place-self: stretch !important;
+  z-index: 2;
+}
+
+.bh-testimonials-marquee {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 12px,
+    #000 calc(100% - 12px),
+    transparent 100%
+  );
+}
+
+.bh-testimonials-marquee__viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bh-testimonials-marquee__track {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  width: max-content;
+  height: 100%;
+  gap: 4px;
+  will-change: transform;
+  animation: bh-testimonials-rtl 55s linear infinite;
+}
+
+.bh-testimonials-marquee__track-source,
+.bh-testimonials-marquee__track-clone {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  gap: 4px;
+  height: 100%;
+}
+
+.bh-testimonials-marquee__track-clone {
+  margin-left: 0;
+}
+
+.bh-testimonials-marquee__track-source > *,
+.bh-testimonials-marquee__track-clone > * {
+  flex: 0 0 clamp(280px, 22vw, 360px) !important;
+  width: clamp(280px, 22vw, 360px) !important;
+  max-width: 360px;
+  height: auto !important;
+  min-height: 430px;
+  place-self: stretch !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.bh-testimonials-marquee__track-source > * > *,
+.bh-testimonials-marquee__track-clone > * > * {
+  flex: 1 0 auto;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bh-testimonials-marquee:hover .bh-testimonials-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes bh-testimonials-rtl {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .framer-rkHvP .framer-mr0vhf > * {
@@ -500,12 +597,17 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
 }
 
 @media (max-width: 1199px) and (min-width: 810px) {
-  .framer-rkHvP .framer-mr0vhf .framer-1gh0xjw,
-  .framer-rkHvP .framer-mr0vhf .framer-q96ctn-container,
-  .framer-rkHvP .framer-mr0vhf .framer-1hllsft-container,
-  .framer-rkHvP .framer-mr0vhf .framer-181puib-container,
-  .framer-rkHvP .framer-mr0vhf [data-bh-extra] {
-    height: auto !important;
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > .framer-1gh0xjw,
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > [data-framer-name="Intro"] {
+    flex-basis: 240px !important;
+    width: 240px !important;
+    min-height: 420px;
+  }
+
+  .bh-testimonials-marquee__track-source > *,
+  .bh-testimonials-marquee__track-clone > * {
+    flex-basis: 300px !important;
+    width: 300px !important;
     min-height: 420px;
   }
 
@@ -516,6 +618,37 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
 }
 
 @media (max-width: 809px) {
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout {
+    flex-direction: column !important;
+    min-height: 0;
+  }
+
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > .framer-1gh0xjw,
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > [data-framer-name="Intro"] {
+    flex: none !important;
+    width: 100% !important;
+    max-width: none;
+    min-height: 0;
+  }
+
+  .bh-testimonials-marquee {
+    width: 100%;
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 8px,
+      #000 calc(100% - 8px),
+      transparent 100%
+    );
+  }
+
+  .bh-testimonials-marquee__track-source > *,
+  .bh-testimonials-marquee__track-clone > * {
+    flex-basis: min(300px, 82vw) !important;
+    width: min(300px, 82vw) !important;
+    min-height: 0;
+  }
+
   .framer-mr0vhf .framer-k80mU.framer-1xa06lp,
   .framer-mr0vhf .framer-k80mU.framer-v-hfi02n.framer-1xa06lp {
     height: auto !important;
@@ -526,6 +659,17 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
   .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
     --framer-font-size: 18px !important;
     --framer-line-height: 125% !important;
+  }
+
+  .bh-testimonials-marquee__track {
+    animation-duration: 40s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-testimonials-marquee__track {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
