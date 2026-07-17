@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BrandHive Socials - Custom runtime modules
  * Merged deferred scripts. Each module is an isolated IIFE with its own guard.
  * Order: about → testimonials → cta-banner → packages → strategy-call → quote-bridge → why-us → nav
@@ -917,7 +917,7 @@
     '<div class="strategy-call__shell">' +
     '<div class="strategy-call__content">' +
     '<p class="strategy-call__label"><span class="strategy-call__label-icon" aria-hidden="true"></span>Strategy call</p>' +
-    '<h2 id="strategy-call-title" class="strategy-call__heading">Looking for a one&#8209;time <span class="strategy-call__heading-emphasis">Strategy Call</span> instead?</h2>' +
+    '<h2 id="strategy-call-title" class="strategy-call__heading">Looking for a one-time <span class="strategy-call__heading-emphasis">Strategy Call</span> instead?</h2>' +
     '<p class="strategy-call__copy">Get focused, practical guidance for your LinkedIn positioning, content and growth strategy-built around your goals.</p>' +
     '<a class="strategy-call__button" href="https://topmate.io/saakshi_jadhav?utm_source=public_profile&utm_campaign=saakshi_jadhav" target="_blank" rel="noopener noreferrer">Book a 1:1 with Saakshi<span class="strategy-call__button-dot" aria-hidden="true"></span></a>' +
     "</div>" +

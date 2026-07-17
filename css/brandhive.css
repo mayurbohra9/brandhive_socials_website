@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
  * BrandHive Socials - Custom component styles
  * Merged: utilities, about, cta-banner, packages, strategy-call, quote-bridge, why-us
  * Load after framer-components.css. Do not reorder sections.
@@ -1335,7 +1335,7 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
     width: 100%;
     transform: none;
     text-align: left;
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
   }
 
   #about .about__visual {
@@ -1356,13 +1356,7 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
 
   #about .about__actions {
     flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  #about .about__button {
-    width: 100%;
-    justify-content: space-between;
+    align-items: flex-start;
   }
 }
 
@@ -2126,24 +2120,9 @@ section[data-framer-name="Pricing"] .framer-pvk990 {
   }
 
   #bh-packages .bh-pkg {
-    flex-basis: min(300px, 85vw);
+    flex-basis: min(290px, 92vw);
     padding: 1.5rem 1.25rem 1.625rem;
     border-radius: 16px;
-  }
-
-  #bh-packages .bh-packages__slider {
-    overflow: hidden;
-    margin-inline: -4px;
-    padding-inline: 4px;
-  }
-
-  #bh-packages .bh-packages__track {
-    padding-right: 20px;
-  }
-
-  #bh-packages .bh-pkg__cta {
-    width: 100%;
-    justify-content: space-between;
   }
 }
 
@@ -2577,11 +2556,8 @@ section[data-framer-name="Bento"].framer-15o920v {
     padding: 72px 20px 32px;
   }
 
-  /* Stack content above portrait so the CTA never overlaps badges */
   #strategy-call .strategy-call__shell {
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
+    min-height: 800px;
     border-radius: 18px;
   }
 
@@ -2589,44 +2565,28 @@ section[data-framer-name="Bento"].framer-15o920v {
     justify-content: flex-start;
     width: 100%;
     min-height: 0;
-    padding: 2rem 1.5rem 1.25rem;
+    padding: 2rem 1.5rem;
   }
 
   #strategy-call .strategy-call__heading {
-    max-width: none;
-    font-size: clamp(2.1rem, 10vw, 3.2rem);
-    hyphens: none;
-    -webkit-hyphens: none;
-    overflow-wrap: normal;
-    word-break: normal;
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 11vw, 3.6rem);
   }
 
   #strategy-call .strategy-call__copy {
-    max-width: none;
-  }
-
-  #strategy-call .strategy-call__button {
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 1.75rem;
+    max-width: 28rem;
   }
 
   #strategy-call .strategy-call__visual {
-    position: relative;
-    right: auto;
-    bottom: auto;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    height: min(58vw, 360px);
-    min-height: 300px;
-    margin-top: 0.25rem;
+    height: 44%;
   }
 
   #strategy-call .strategy-call__portrait {
     left: 50%;
     height: 100%;
-    max-width: 100%;
     transform: translateX(-50%);
   }
 
@@ -2647,47 +2607,41 @@ section[data-framer-name="Bento"].framer-15o920v {
   }
 
   #strategy-call .strategy-call__metric--followers {
-    top: 28%;
+    top: 26%;
     left: 4%;
   }
 
   #strategy-call .strategy-call__metric--rating {
-    top: 44%;
+    top: 42%;
     right: 3%;
   }
 
   #strategy-call .strategy-call__metric--views {
     top: auto;
-    bottom: 8%;
-    left: 5%;
+    bottom: 7%;
+    left: 6%;
   }
 }
 
 @media (max-width: 479px) {
+  #strategy-call .strategy-call__shell {
+    min-height: 640px;
+  }
+
   #strategy-call .strategy-call__content {
-    padding: 1.75rem 1.25rem 1rem;
+    padding: 1.75rem 1.25rem;
   }
 
   #strategy-call .strategy-call__copy {
     font-size: 14px;
   }
 
-  #strategy-call .strategy-call__visual {
-    height: min(70vw, 320px);
-    min-height: 260px;
-  }
-
   #strategy-call .strategy-call__portrait {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
   }
 
   #strategy-call .strategy-call__metric {
     padding: 8px 11px;
-  }
-
-  #strategy-call .strategy-call__founder {
-    padding: 8px 14px;
   }
 }
 
@@ -3212,7 +3166,7 @@ div[data-layout-template="true"].framer-8QVl3 {
 /* -- Mobile -- */
 @media (max-width: 809.98px) {
   #why-us {
-    padding: 56px 20px;
+    padding: 64px 20px;
   }
 
   #why-us .why-us__container {
@@ -3220,7 +3174,7 @@ div[data-layout-template="true"].framer-8QVl3 {
     flex-direction: column;
     position: relative;
     top: unset;
-    gap: 16px;
+    gap: 24px;
   }
 
   #why-us .why-us__side {
@@ -3247,18 +3201,14 @@ div[data-layout-template="true"].framer-8QVl3 {
     text-align: left;
   }
 
-  #why-us .why-us__stats {
-    gap: 22px;
-  }
-
   #why-us .why-us__middle {
     order: 1;
     max-width: unset;
     flex: none;
     width: 100%;
     height: auto;
-    min-height: 0;
-    padding: 22px 20px;
+    min-height: 420px;
+    padding: 24px;
   }
 
   #why-us .why-us__bg {
@@ -3266,16 +3216,15 @@ div[data-layout-template="true"].framer-8QVl3 {
   }
 
   #why-us .stat__value {
-    font-size: clamp(40px, 12vw, 52px);
+    font-size: 52px;
   }
 
   #why-us .why-us__headline {
-    font-size: clamp(24px, 7vw, 30px);
+    font-size: 30px;
   }
 
   #why-us .why-us__blurb {
     text-align: left;
-    font-size: 14px;
   }
 
   #why-us .why-us__triggers {
@@ -3310,65 +3259,6 @@ div[data-layout-template="true"].framer-8QVl3 {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-}
-
-/* --- mobile site-wide polish --- */
-@media (max-width: 809.98px) {
-  html {
-    scroll-padding-top: 76px;
-  }
-
-  #hero,
-  #about,
-  #services,
-  #projects,
-  #packages,
-  #bh-packages,
-  #why-us,
-  #strategy-call,
-  #quote-bridge,
-  #cta-banner,
-  section[data-framer-name="Services"],
-  section[data-framer-name="Projects"],
-  section[data-framer-name="Pricing"],
-  section[data-framer-name="FAQ"] {
-    scroll-margin-top: 76px;
-  }
-
-  /* Contain intentional carousels without page-level sideways scroll */
-  body {
-    overflow-x: clip;
-  }
-
-  #quote-bridge {
-    padding: 24px 20px 56px;
-  }
-
-  #quote-bridge .quote-bridge__text {
-    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
-    padding-inline: 4px;
-  }
-
-  #quote-bridge .quote-bridge__word {
-    white-space: normal;
-  }
-
-  #cta-banner .cta-banner__button {
-    width: min(100%, 280px);
-    justify-content: center;
-  }
-
-  /* Hero brand type scale on narrow phones */
-  .framer-rkHvP svg.framer-j23lg0 p.framer-text,
-  .framer-rkHvP svg.framer-1no2xs1 p.framer-text {
-    --framer-font-size: clamp(48px, 16vw, 72px) !important;
-    font-size: clamp(48px, 16vw, 72px) !important;
-  }
-
-  /* Keep founder card readable */
-  .framer-rkHvP .framer-vAymd {
-    max-width: 100% !important;
   }
 }
 
