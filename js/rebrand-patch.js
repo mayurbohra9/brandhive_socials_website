@@ -329,6 +329,37 @@
     var fo = svg.querySelector("foreignObject");
     if (fo) fo.style.overflow = "visible";
 
+    var isPhone = window.innerWidth < 810;
+    if (isPhone) {
+      // Plain HTML stack — SVG viewBox font units make BrandHive tiny on phone.
+      var mark = logo.querySelector(".bh-footer-wordmark");
+      if (!mark) {
+        mark = document.createElement("div");
+        mark.className = "bh-footer-wordmark";
+        mark.setAttribute("aria-label", "BrandHive Socials");
+        mark.innerHTML =
+          '<span class="bh-brand">BrandHive</span><span class="bh-socials">Socials</span>';
+        logo.insertBefore(mark, logo.firstChild);
+      }
+      // Hide Framer SVG + all Socials variants (CSS alone loses to display:block !important).
+      logo.querySelectorAll("svg.framer-1w026i8, svg, .ssr-variant").forEach(function (el) {
+        if (el.classList && el.classList.contains("bh-footer-wordmark")) return;
+        el.style.setProperty("display", "none", "important");
+        el.style.setProperty("visibility", "hidden", "important");
+      });
+      logo.style.paddingBottom = "";
+      logo.style.position = "relative";
+      return;
+    }
+
+    var existingMark = logo.querySelector(".bh-footer-wordmark");
+    if (existingMark) existingMark.remove();
+
+    logo.querySelectorAll("svg.framer-1w026i8, svg, .ssr-variant").forEach(function (el) {
+      el.style.removeProperty("display");
+      el.style.removeProperty("visibility");
+    });
+
     // Pin "Socials" so its right edge lines up with the end of "BrandHive".
     logo.style.position = "relative";
     var socialWraps = logo.querySelectorAll(".ssr-variant");
@@ -339,8 +370,7 @@
     if (!brandRect.width) return;
 
     var rightEdge = Math.max(0, brandRect.right - logoRect.left);
-    var fontSize =
-      window.innerWidth >= 1200 ? "72px" : window.innerWidth >= 810 ? "54px" : "40px";
+    var fontSize = window.innerWidth >= 1200 ? "72px" : "54px";
 
     socialWraps.forEach(function (wrap) {
       if (!wrap.querySelector(".framer-x47oxk")) return;

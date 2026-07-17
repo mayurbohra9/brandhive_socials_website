@@ -55,6 +55,13 @@ header .framer-kxb2zt-container .framer-uNobG::before {
   display: none !important;
 }
 
+/* Legacy Advantages metric cards (50+ / 95% / logoipsum).
+   Desktop already collapses them; hide explicitly so mobile matches. */
+section[data-framer-name="Advantages"] [data-framer-name="Cards"],
+.framer-rkHvP .framer-3enyfc .framer-3k1kkv {
+  display: none !important;
+}
+
 /* Hero bottom tagline: center-align. */
 .framer-hsxobt .framer-qj2zoe,
 .framer-hsxobt .framer-1h9hge5,
@@ -217,8 +224,19 @@ header .framer-kxb2zt-container .framer-uNobG::before {
 
   .framer-rkHvP svg.framer-j23lg0 p.framer-text,
   .framer-rkHvP svg.framer-1no2xs1 p.framer-text {
-    --framer-font-size: 72px !important;
-    font-size: 72px !important;
+    --framer-font-size: 88px !important;
+    font-size: 88px !important;
+    --framer-line-height: 1 !important;
+    line-height: 1 !important;
+  }
+
+  /* BrandHive SVG box is taller than the glyphs; pull Socials up on phone. */
+  .framer-rkHvP .framer-1spzsp8 {
+    gap: 0 !important;
+  }
+
+  .framer-rkHvP .framer-gxz29i {
+    margin-top: -76px !important;
   }
 
   .framer-rkHvP .framer-11hmflf {
@@ -310,10 +328,76 @@ header .framer-kxb2zt-container .framer-uNobG::before {
   }
 }
 
+/* Mobile footer wordmark: plain stack (SVG viewBox sizing fights phone fonts). */
+.bh-footer-wordmark {
+  display: none;
+}
+
 @media (max-width: 809.98px) {
-  .framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
-    --framer-font-size: 40px !important;
-    font-size: 40px !important;
+  .framer-8QVl3 .framer-pbcowa {
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding-bottom: 0 !important;
+    gap: 0 !important;
+    row-gap: 0 !important;
+  }
+
+  /* Must beat base `.ssr-variant:has(.framer-x47oxk) { display: block !important }` */
+  .framer-8QVl3 .framer-pbcowa:has(.bh-footer-wordmark) > svg.framer-1w026i8,
+  .framer-8QVl3 .framer-pbcowa:has(.bh-footer-wordmark) > .ssr-variant,
+  .framer-8QVl3 .framer-pbcowa:has(.bh-footer-wordmark) > .ssr-variant:has(.framer-x47oxk),
+  .framer-8QVl3 .framer-pbcowa:has(.bh-footer-wordmark) .framer-x47oxk {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+  }
+
+  .framer-8QVl3 .framer-pbcowa > .bh-footer-wordmark {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #0a0a0a;
+    font-family: "Inter", "Inter Placeholder", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+  }
+
+  .framer-8QVl3 .framer-pbcowa > .bh-footer-wordmark .bh-brand {
+    display: block;
+    font-size: clamp(52px, 15.5vw, 64px);
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .framer-8QVl3 .framer-pbcowa > .bh-footer-wordmark .bh-socials {
+    display: block;
+    font-size: clamp(44px, 13vw, 56px);
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 810px) {
+  .framer-8QVl3 .framer-pbcowa > .bh-footer-wordmark {
+    display: none !important;
   }
 }
 
@@ -891,31 +975,145 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
   height: 100% !important;
 }
 
-@media (max-width: 1199px) and (min-width: 810px) {
+/* Prevent mid-word breaks in testimonials intro copy. */
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-text,
+.framer-rkHvP .framer-mr0vhf .framer-bn2dx9 .framer-text,
+.framer-rkHvP section[data-framer-name="Testimonials"] .framer-bn2dx9 .framer-text {
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: none !important;
+  white-space: normal !important;
+}
+
+/* Testimonials intro: keep full "BrandHive Socials" visible (was clipped). */
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-j5bl4s,
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-1kvaavs {
+  overflow: visible !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-uNobG.framer-1ppeyn8,
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-w92amy-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  justify-content: flex-start !important;
+}
+
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-1lz6zv4 {
+  white-space: normal !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-1lz6zv4 .framer-text {
+  white-space: normal !important;
+  overflow: visible !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 1199.98px) and (min-width: 810px) {
+  /* Tablet: stack intro above marquee so cards aren't cramped. */
+  .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > .framer-1gh0xjw,
   .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > [data-framer-name="Intro"] {
-    flex-basis: 240px !important;
-    width: 240px !important;
+    flex: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  .framer-rkHvP .framer-mr0vhf .framer-1gh0xjw {
+    height: auto !important;
+  }
+
+  .bh-testimonials-marquee {
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
     min-height: 420px;
+    overflow: hidden;
+  }
+
+  .bh-testimonials-marquee__viewport {
+    height: auto !important;
+    min-height: 420px;
+    overflow: hidden;
+  }
+
+  .bh-testimonials-marquee__track,
+  .bh-testimonials-marquee__track-source,
+  .bh-testimonials-marquee__track-clone {
+    height: auto !important;
+    min-height: 420px;
+    align-items: stretch !important;
+    gap: 14px !important;
   }
 
   .bh-testimonials-marquee__track-source > *,
   .bh-testimonials-marquee__track-clone > * {
-    flex-basis: 300px !important;
-    width: 300px !important;
-    min-height: 420px;
+    flex: 0 0 min(360px, 46vw) !important;
+    width: min(360px, 46vw) !important;
+    max-width: 420px !important;
+    height: auto !important;
+    min-height: 420px !important;
+  }
+
+  .bh-testimonials-marquee__track-source > * > *,
+  .bh-testimonials-marquee__track-clone > * > * {
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 420px !important;
+  }
+
+  .bh-testimonials-marquee .framer-k80mU.framer-1xa06lp,
+  .bh-testimonials-marquee .framer-k80mU.framer-v-hfi02n.framer-1xa06lp {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 420px !important;
+    overflow: hidden !important;
+    gap: 4px !important;
+  }
+
+  .bh-testimonials-marquee .framer-k80mU .framer-1nedhuv,
+  .bh-testimonials-marquee .framer-k80mU .framer-1flz52s {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .bh-testimonials-marquee .framer-k80mU .framer-1flz52s {
+    flex: 1 1 auto !important;
   }
 
   .framer-mr0vhf .framer-k80mU .framer-j1a15y .framer-text,
-  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
-    --framer-font-size: 18px !important;
+  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji,
+  .bh-testimonials-marquee .framer-k80mU .framer-j1a15y .framer-text {
+    --framer-font-size: 17px !important;
+    --framer-line-height: 130% !important;
   }
 }
 
 @media (max-width: 809px) {
   .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout {
     flex-direction: column !important;
-    min-height: 0;
+    align-items: stretch !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .framer-rkHvP .framer-mr0vhf.bh-testimonials-layout > .framer-1gh0xjw,
@@ -924,10 +1122,16 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
     width: 100% !important;
     max-width: none;
     min-height: 0;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .bh-testimonials-marquee {
-    width: 100%;
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 380px;
+    overflow: hidden;
     mask-image: linear-gradient(
       90deg,
       transparent 0,
@@ -937,27 +1141,91 @@ section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Ratin
     );
   }
 
-  .bh-testimonials-marquee__track-source > *,
-  .bh-testimonials-marquee__track-clone > * {
-    flex-basis: min(300px, 82vw) !important;
-    width: min(300px, 82vw) !important;
-    min-height: 0;
+  .bh-testimonials-marquee__viewport {
+    height: auto !important;
+    min-height: 380px;
+    overflow: hidden;
   }
 
+  .bh-testimonials-marquee__track,
+  .bh-testimonials-marquee__track-source,
+  .bh-testimonials-marquee__track-clone {
+    height: auto !important;
+    min-height: 380px;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .bh-testimonials-marquee__track-source > *,
+  .bh-testimonials-marquee__track-clone > * {
+    flex: 0 0 min(300px, 85vw) !important;
+    width: min(300px, 85vw) !important;
+    max-width: 85vw !important;
+    height: auto !important;
+    min-height: 380px !important;
+    align-self: stretch !important;
+  }
+
+  .bh-testimonials-marquee__track-source > * > *,
+  .bh-testimonials-marquee__track-clone > * > * {
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 380px !important;
+  }
+
+  /* Card root: tall enough for quote + author; clip inside card only. */
+  .bh-testimonials-marquee .framer-k80mU.framer-1xa06lp,
+  .bh-testimonials-marquee .framer-k80mU.framer-v-hfi02n.framer-1xa06lp,
   .framer-mr0vhf .framer-k80mU.framer-1xa06lp,
   .framer-mr0vhf .framer-k80mU.framer-v-hfi02n.framer-1xa06lp {
+    width: 100% !important;
     height: auto !important;
-    min-height: 0;
+    min-height: 380px !important;
+    overflow: hidden !important;
+    gap: 4px !important;
+  }
+
+  /* Top/Bottom panels stack by content — kill Framer height:1px flex collapse. */
+  .bh-testimonials-marquee .framer-k80mU .framer-1nedhuv,
+  .bh-testimonials-marquee .framer-k80mU .framer-1flz52s,
+  .framer-mr0vhf .framer-k80mU .framer-1nedhuv,
+  .framer-mr0vhf .framer-k80mU .framer-1flz52s {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .bh-testimonials-marquee .framer-k80mU .framer-1flz52s {
+    flex: 1 1 auto !important;
+  }
+
+  .bh-testimonials-marquee .framer-k80mU .framer-j1a15y {
+    overflow: visible !important;
   }
 
   .framer-mr0vhf .framer-k80mU .framer-j1a15y .framer-text,
-  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
-    --framer-font-size: 18px !important;
-    --framer-line-height: 125% !important;
+  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji,
+  .bh-testimonials-marquee .framer-k80mU .framer-j1a15y .framer-text {
+    --framer-font-size: 16px !important;
+    --framer-line-height: 130% !important;
   }
 
   .bh-testimonials-marquee__track {
     animation-duration: 40s;
+  }
+
+  /* Intro brand label: fit full "BrandHive Socials" on phone. */
+  .framer-rkHvP .framer-mr0vhf .framer-1gh0xjw {
+    overflow: visible !important;
+  }
+
+  .framer-rkHvP .framer-mr0vhf .framer-1gh0xjw .framer-1lz6zv4 .framer-text {
+    --framer-font-size: 16px !important;
+    font-size: 16px !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -2115,14 +2383,50 @@ section[data-framer-name="Pricing"] .framer-pvk990 {
     white-space: normal;
   }
 
-  #bh-packages .bh-packages__nav {
-    display: none;
+  /* Stack full-width cards on phone — avoid cramped side-by-side carousel. */
+  #bh-packages .bh-packages__track {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding: 0;
+  }
+
+  #bh-packages .bh-packages__nav,
+  #bh-packages .bh-packages__dots {
+    display: none !important;
   }
 
   #bh-packages .bh-pkg {
-    flex-basis: min(290px, 92vw);
-    padding: 1.5rem 1.25rem 1.625rem;
-    border-radius: 16px;
+    flex: none;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 1.75rem 1.5rem 1.75rem;
+    border-radius: 18px;
+  }
+
+  #bh-packages .bh-pkg__name {
+    font-size: clamp(1.5rem, 7vw, 1.85rem);
+  }
+
+  #bh-packages .bh-pkg__tag {
+    font-size: 15px;
+  }
+
+  #bh-packages .bh-pkg__list {
+    gap: 14px;
+  }
+
+  #bh-packages .bh-pkg__list li {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  #bh-packages .bh-pkg__cta {
+    margin-top: 1.75rem;
+    min-height: 52px;
   }
 }
 
@@ -2557,15 +2861,19 @@ section[data-framer-name="Bento"].framer-15o920v {
   }
 
   #strategy-call .strategy-call__shell {
-    min-height: 800px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     border-radius: 18px;
   }
 
   #strategy-call .strategy-call__content {
+    position: relative;
+    z-index: 3;
     justify-content: flex-start;
     width: 100%;
     min-height: 0;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 1.25rem;
   }
 
   #strategy-call .strategy-call__heading {
@@ -2577,11 +2885,21 @@ section[data-framer-name="Bento"].framer-15o920v {
     max-width: 28rem;
   }
 
+  #strategy-call .strategy-call__button {
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  /* Keep portrait below copy/CTA so badges never collide with the button. */
   #strategy-call .strategy-call__visual {
-    right: 0;
-    bottom: 0;
+    position: relative;
+    right: auto;
+    bottom: auto;
     width: 100%;
-    height: 44%;
+    height: 420px;
+    flex: none;
+    margin-top: 0;
   }
 
   #strategy-call .strategy-call__portrait {
@@ -2597,8 +2915,11 @@ section[data-framer-name="Bento"].framer-15o920v {
   }
 
   #strategy-call .strategy-call__founder {
-    top: 10%;
-    right: 4%;
+    top: 14px;
+    right: 12px;
+    left: auto;
+    padding: 8px 14px;
+    max-width: min(200px, calc(100% - 24px));
   }
 
   #strategy-call .strategy-call__metric--community,
@@ -2607,41 +2928,115 @@ section[data-framer-name="Bento"].framer-15o920v {
   }
 
   #strategy-call .strategy-call__metric--followers {
-    top: 26%;
-    left: 4%;
+    top: 28%;
+    left: 10px;
   }
 
   #strategy-call .strategy-call__metric--rating {
-    top: 42%;
-    right: 3%;
+    top: 44%;
+    right: 10px;
   }
 
   #strategy-call .strategy-call__metric--views {
     top: auto;
-    bottom: 7%;
-    left: 6%;
+    bottom: 14px;
+    left: 10px;
   }
 }
 
 @media (max-width: 479px) {
+  #strategy-call {
+    padding: 56px 14px 28px;
+  }
+
   #strategy-call .strategy-call__shell {
-    min-height: 640px;
+    min-height: 0;
   }
 
   #strategy-call .strategy-call__content {
-    padding: 1.75rem 1.25rem;
+    padding: 1.5rem 1.1rem 1rem;
+  }
+
+  #strategy-call .strategy-call__heading {
+    font-size: clamp(2rem, 10vw, 2.6rem);
   }
 
   #strategy-call .strategy-call__copy {
     font-size: 14px;
   }
 
-  #strategy-call .strategy-call__portrait {
+  #strategy-call .strategy-call__button {
     width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 44px;
+    margin-top: 1.15rem;
+    padding: 0 12px 0 14px;
+    font-size: 13px;
+  }
+
+  #strategy-call .strategy-call__visual {
+    height: 320px;
+  }
+
+  #strategy-call .strategy-call__portrait {
+    width: auto;
+    max-width: 92%;
+    height: 100%;
+  }
+
+  #strategy-call .strategy-call__founder {
+    top: 10px;
+    right: 8px;
+    padding: 7px 11px;
+    max-width: min(160px, calc(100% - 16px));
+  }
+
+  #strategy-call .strategy-call__founder small {
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  #strategy-call .strategy-call__founder strong {
+    font-size: 11px;
   }
 
   #strategy-call .strategy-call__metric {
-    padding: 8px 11px;
+    max-width: calc(50% - 10px);
+    padding: 6px 9px 6px 7px;
+    gap: 7px;
+  }
+
+  #strategy-call .strategy-call__metric::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  #strategy-call .strategy-call__metric strong {
+    font-size: 11px;
+  }
+
+  #strategy-call .strategy-call__metric small {
+    font-size: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  #strategy-call .strategy-call__metric--followers {
+    top: 22%;
+    left: 8px;
+  }
+
+  #strategy-call .strategy-call__metric--rating {
+    top: 22%;
+    right: 8px;
+    left: auto;
+  }
+
+  #strategy-call .strategy-call__metric--views {
+    bottom: 10px;
+    left: 8px;
+    max-width: calc(100% - 16px);
   }
 }
 
