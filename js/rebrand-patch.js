@@ -14,14 +14,12 @@
 
   var BRAND = "BrandHive Socials";
   var DESIRED_TITLE =
-    "BrandHive Socials – Web Design, Branding & Digital Growth";
+    "BrandHive Socials - Web Design, Branding & Digital Growth";
   var FOOTER_COPYRIGHT = "© 2026 BrandHive Socials. All rights reserved.";
   var FOOTER_HIRE_EMAIL = "saakshi@brandhivesocials.com";
   var FOOTER_JOIN_EMAIL = "careers@brandhivesocials.com";
   var FOOTER_HIRE_HEADING = "Hire us:";
   var FOOTER_JOIN_HEADING = "Join us:";
-  var FOOTER_HIRE_LABEL = FOOTER_HIRE_HEADING + " " + FOOTER_HIRE_EMAIL;
-  var FOOTER_JOIN_LABEL = FOOTER_JOIN_HEADING + " " + FOOTER_JOIN_EMAIL;
   var FOOTER_INSTAGRAM_URL = "https://www.instagram.com/brandhivesocials/";
   var FOOTER_LINKEDIN_URL =
     "https://www.linkedin.com/company/brandhive-socials/";
@@ -146,37 +144,37 @@
     "Selected LinkedIn success stories across personal branding, company positioning, lead generation, workshops, and influencer campaigns.";
   var PROJECT_CARDS = [
     {
-      href: "./projects/boltshift",
+      href: "#",
       title: "Personal Branding.",
       year: "2026",
       image: "assets/images/project-linkedin-personal-branding.jpg",
     },
     {
-      href: "./projects/ephemeral",
+      href: "#",
       title: "Company Branding.",
       year: "2026",
       image: "assets/images/project-linkedin-company-branding.jpg",
     },
     {
-      href: "./projects/powersurge",
+      href: "#",
       title: "Lead Generation.",
       year: "2026",
       image: "assets/images/project-linkedin-lead-generation.jpg",
     },
     {
-      href: "./projects/mastermail",
+      href: "#",
       title: "Workshops & Seminars.",
       year: "2026",
       image: "assets/images/project-linkedin-workshops.jpg",
     },
     {
-      href: "./projects/warpspeed",
+      href: "#",
       title: "Influencer Marketing.",
       year: "2026",
       image: "assets/images/project-linkedin-influencer-marketing.jpg",
     },
     {
-      href: "./projects/cloudwatch",
+      href: "#",
       title: "Integrated LinkedIn Growth.",
       year: "2026",
       image: "assets/images/project-linkedin-growth-campaign.jpg",
@@ -188,7 +186,7 @@
     cta: "Your LinkedIn growth starts with a conversation. Let's talk today.",
     bodyStrong: "No fluff, just LinkedIn results.",
     bodyRest:
-      " Strategy, content, and outreach that make your brand work harder. We deliver personal branding, company pages, lead gen, workshops, and influencer campaigns—project after project.",
+      " Strategy, content, and outreach that make your brand work harder. We deliver personal branding, company pages, lead gen, workshops, and influencer campaigns-project after project.",
     card1Title: "LinkedIn programs delivered",
     card1Desc:
       "We've delivered 50+ LinkedIn branding, lead-gen, workshop, and influencer programs that create real business conversations.",
@@ -210,7 +208,7 @@
     if (
       /^©\s*2026\s*BrandHive Socials\.?$/i.test(next) ||
       /^©\s*2026$/i.test(next) ||
-      /^\(?\s*2016\s*[-–—]\s*25\s*©?\s*\)?$/i.test(next) ||
+      /^\(?\s*2016\s*[---]\s*25\s*©?\s*\)?$/i.test(next) ||
       /^\(2016-25©\)$/i.test(next)
     ) {
       return "";
@@ -687,6 +685,60 @@
     });
   }
 
+  function neutralizeProjectLink(link) {
+    if (!link || link.tagName !== "A") return;
+    if (link.getAttribute("href") !== "#") {
+      link.setAttribute("href", "#");
+    }
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+    if (!link.__bhProjectClickBound) {
+      link.__bhProjectClickBound = true;
+      link.addEventListener(
+        "click",
+        function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        true,
+      );
+      link.addEventListener(
+        "auxclick",
+        function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        true,
+      );
+      link.addEventListener(
+        "keydown",
+        function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        },
+        true,
+      );
+    }
+  }
+
+  function getProjectCardLinks(section) {
+    var links = Array.prototype.slice.call(
+      section.querySelectorAll(
+        "a.framer-p1ypN, a[href*='/projects/'], a[href^='./projects/']",
+      ),
+    );
+    if (!links.length) {
+      links = Array.prototype.slice
+        .call(section.querySelectorAll("a[href]"))
+        .filter(function (a) {
+          return !!a.querySelector('[data-framer-name="Project name"]');
+        });
+    }
+    return links;
+  }
+
   function fixProjects() {
     var section = document.querySelector('section[data-framer-name="Projects"]');
     if (!section) return;
@@ -694,32 +746,36 @@
     var desc = section.querySelector('[data-framer-name="Description"] p');
     if (desc) desc.textContent = PROJECT_SUBTITLE;
 
-    PROJECT_CARDS.forEach(function (project) {
-      var links = section.querySelectorAll('a[href="' + project.href + '"]');
-      Array.prototype.forEach.call(links, function (link) {
-        var name = link.querySelector('[data-framer-name="Project name"] p');
-        if (name) name.textContent = project.title;
+    var cardLinks = getProjectCardLinks(section);
 
-        var yearEl = link.querySelector(".framer-9ocb8t");
-        if (!yearEl) {
-          var yearWrap = link.querySelector('[data-framer-name="Year"]');
-          if (yearWrap) {
-            var ps = yearWrap.querySelectorAll("p");
-            if (ps.length) yearEl = ps[ps.length - 1];
-          }
-        }
-        if (yearEl && /^\d{4}$/.test(yearEl.textContent.trim())) {
-          yearEl.textContent = project.year;
-        }
+    cardLinks.forEach(function (link, index) {
+      var project = PROJECT_CARDS[index % PROJECT_CARDS.length];
+      if (!project) return;
 
-        link
-          .querySelectorAll('[data-framer-name="Image"] img')
-          .forEach(function (img) {
-            img.setAttribute("src", project.image);
-            img.removeAttribute("srcset");
-            img.alt = project.title.replace(/\.$/, "");
-          });
-      });
+      neutralizeProjectLink(link);
+
+      var name = link.querySelector('[data-framer-name="Project name"] p');
+      if (name) name.textContent = project.title;
+
+      var yearEl = link.querySelector(".framer-9ocb8t");
+      if (!yearEl) {
+        var yearWrap = link.querySelector('[data-framer-name="Year"]');
+        if (yearWrap) {
+          var ps = yearWrap.querySelectorAll("p");
+          if (ps.length) yearEl = ps[ps.length - 1];
+        }
+      }
+      if (yearEl && /^\d{4}$/.test(yearEl.textContent.trim())) {
+        yearEl.textContent = project.year;
+      }
+
+      link
+        .querySelectorAll('[data-framer-name="Image"] img')
+        .forEach(function (img) {
+          img.setAttribute("src", project.image);
+          img.removeAttribute("srcset");
+          img.alt = project.title.replace(/\.$/, "");
+        });
     });
   }
 
@@ -924,6 +980,85 @@
     }, 400);
   }
 
+  var TOPMATE_URL =
+    "https://topmate.io/saakshi_jadhav?utm_source=public_profile&utm_campaign=saakshi_jadhav";
+  var CALENDLY_URL = "https://calendly.com/saakshi_jadhav/discovery-call";
+
+  function normalizeCtaLabel(text) {
+    return String(text || "")
+      .replace(/[\u2018\u2019\u02BC']/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function urlForCtaLabel(plain) {
+    if (plain === "contact" || plain === "contact contact") {
+      return "#packages";
+    }
+    if (plain.indexOf("discovery") !== -1) {
+      return CALENDLY_URL;
+    }
+    if (plain.indexOf("get in touch") !== -1) {
+      return CALENDLY_URL;
+    }
+    var rules = [
+      ["lets talk", TOPMATE_URL],
+      ["enquire", TOPMATE_URL],
+      ["book a 1:1 with saakshi", TOPMATE_URL],
+      ["book a call", CALENDLY_URL],
+    ];
+    for (var i = 0; i < rules.length; i++) {
+      var label = rules[i][0];
+      var url = rules[i][1];
+      if (
+        plain === label ||
+        plain === label + " " + label ||
+        plain.slice(-label.length - 1) === " " + label ||
+        plain.indexOf(label + " " + label) !== -1
+      ) {
+        return url;
+      }
+    }
+    return null;
+  }
+
+  function fixCtaLinks() {
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      if (isInsidePreloader(a)) return;
+      var plain = normalizeCtaLabel(a.textContent);
+      if (plain.indexOf("hire us") !== -1 || plain.indexOf("join us") !== -1) {
+        return;
+      }
+      var url = urlForCtaLabel(plain);
+      if (!url) {
+        if (
+          a.classList.contains("strategy-call__button") ||
+          a.classList.contains("bh-pkg__cta") ||
+          a.classList.contains("framer-vAymd")
+        ) {
+          url = TOPMATE_URL;
+        } else if (a.classList.contains("cta-banner__button")) {
+          url = CALENDLY_URL;
+        } else if (
+          a.classList.contains("about__button--outline") ||
+          /discovery/i.test(plain)
+        ) {
+          url = CALENDLY_URL;
+        }
+      }
+      if (!url) return;
+      if (a.getAttribute("href") !== url) a.setAttribute("href", url);
+      if (url.charAt(0) === "#") {
+        a.removeAttribute("target");
+        a.removeAttribute("rel");
+      } else {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  }
+
   function applyAll() {
     if (!document.body) return;
     walk(document.body);
@@ -941,17 +1076,31 @@
     fixServiceCards();
     fixProjects();
     fixAdvantages();
+    fixCtaLinks();
   }
 
   var scheduled = null;
+  var projectHrefScheduled = null;
   var observer = new MutationObserver(function (mutations) {
     var relevant = false;
+    var projectHrefChanged = false;
     for (var i = 0; i < mutations.length; i++) {
       var m = mutations[i];
       var target = m.target;
       if (target && isInsidePreloader(target)) continue;
       if (m.type === "attributes") {
-        // Framer Motion constantly mutates style/class — ignore to avoid layout thrash.
+        if (
+          m.attributeName === "href" &&
+          target &&
+          target.closest &&
+          target.closest('section[data-framer-name="Projects"]') &&
+          (target.classList.contains("framer-p1ypN") ||
+            (target.querySelector &&
+              target.querySelector('[data-framer-name="Project name"]')))
+        ) {
+          projectHrefChanged = true;
+        }
+        // Framer Motion constantly mutates style/class - ignore to avoid layout thrash.
         continue;
       }
       if (m.type === "characterData") {
@@ -972,6 +1121,12 @@
       relevant = true;
       break;
     }
+    if (projectHrefChanged && !projectHrefScheduled) {
+      projectHrefScheduled = setTimeout(function () {
+        projectHrefScheduled = null;
+        fixProjects();
+      }, 50);
+    }
     if (!relevant) return;
     if (scheduled) return;
     scheduled = setTimeout(function () {
@@ -991,9 +1146,37 @@
       childList: true,
       subtree: true,
       characterData: true,
-      attributes: false,
+      attributes: true,
+      attributeFilter: ["href"],
     });
   }
+
+  // Hard-stop project card navigation even if Framer restores routes.
+  function blockProjectCardNav(event) {
+    var link =
+      event.target && event.target.closest
+        ? event.target.closest(
+            'section[data-framer-name="Projects"] a.framer-p1ypN, section[data-framer-name="Projects"] a[href*="projects/"]',
+          )
+        : null;
+    if (!link) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+    neutralizeProjectLink(link);
+  }
+
+  ["click", "auxclick"].forEach(function (type) {
+    document.addEventListener(type, blockProjectCardNav, true);
+  });
+  document.addEventListener(
+    "keydown",
+    function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      blockProjectCardNav(event);
+    },
+    true,
+  );
 
   function start() {
     applyAll();
@@ -1006,7 +1189,7 @@
         subtree: true,
       });
     }
-    // Light follow-ups after hydration — avoid hammering during preloader.
+    // Light follow-ups after hydration - avoid hammering during preloader.
     [2000, 5000].forEach(function (delay) {
       setTimeout(applyAll, delay);
     });

@@ -1,3 +1,4 @@
+﻿/* BrandHive foundation: fonts + Framer breakpoint visibility */
 /* Framer @font-face declarations (Geist, Inter, and fallbacks) */
 /* cyrillic-ext */
 
@@ -789,3 +790,42 @@
             line-gap-override: 0.00%;
             size-adjust: 107.89%
         }
+
+/* --- breakpoints.css --- */
+/* Responsive visibility utility classes per breakpoint */
+@media(min-width: 1200px) {
+            .hidden-72rtr7 {
+                display: none !important
+            }
+        }
+
+        @media(min-width: 810px) and (max-width: 1199.98px) {
+            .hidden-tsn51j {
+                display: none !important
+            }
+        }
+
+        @media(max-width: 809.98px) {
+            .hidden-f3lv8x {
+                display: none !important
+            }
+        }
+
+        @media(min-width: 1200px) {
+            .hidden-128kipa {
+                display: none !important
+            }
+        }
+
+        @media(min-width: 810px) and (max-width: 1199.98px) {
+            .hidden-1l0aw67 {
+                display: none !important
+            }
+        }
+
+        @media(max-width: 809.98px) {
+            .hidden-xwr0r7 {
+                display: none !important
+            }
+        }
+

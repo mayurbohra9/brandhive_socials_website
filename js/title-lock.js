@@ -6,7 +6,7 @@
   "use strict";
 
   var DESIRED =
-    "BrandHive Socials – Web Design, Branding & Digital Growth";
+    "BrandHive Socials - Web Design, Branding & Digital Growth";
 
   function normalizeTitle(value) {
     var next = String(value || "");
