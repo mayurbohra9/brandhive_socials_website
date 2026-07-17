@@ -37,7 +37,7 @@
   margin: 0 auto;
 }
 
-/* Section label — matches Testimonials / Why choose us (+ icon + text) */
+/* Section label — same place/alignment as Testimonials */
 #about .about__label {
   display: inline-flex;
   align-items: center;
@@ -84,6 +84,9 @@
   column-gap: clamp(2rem, 4vw, 4rem);
   row-gap: 2rem;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(8px, 2vw, 32px);
 }
 
 #about .about__copy {
@@ -107,14 +110,14 @@
   background: var(--about-panel);
 }
 
-/* Name + role — Inter SemiBold, uppercase, theme spacing */
+/* Name + role — Inter theme (matches site text presets) */
 #about .about__eyebrow {
   margin: 0 0 1.15rem;
   font-family: "Inter", "Inter Placeholder", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
 }
 
@@ -124,21 +127,21 @@
 
 #about .about__eyebrow-line--name {
   color: var(--about-ink);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 #about .about__eyebrow-line--role {
   margin-top: 0.25rem;
   color: var(--about-muted);
-  font-weight: 600;
+  font-weight: 500;
 }
 
-/* Body — matches site paragraph preset */
+/* Body — site paragraph preset (Inter 500, -0.04em) */
 #about .about__body {
   font-family: "Inter", "Inter Placeholder", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.55;
+  line-height: 140%;
   letter-spacing: -0.04em;
 }
 
@@ -162,48 +165,47 @@
   margin-top: 1.5rem;
 }
 
-/* Theme pill buttons (site CTA style) */
+/* Theme pill buttons — black pill with white dot */
 #about .about__button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 42px;
-  padding: 0 18px;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 44px;
+  min-width: 132px;
+  padding: 0 14px 0 18px;
   border: 1px solid var(--about-ink);
   border-radius: 50px;
+  background: var(--about-ink);
+  color: var(--about-white);
   font-family: "Inter", "Inter Placeholder", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 100%;
   letter-spacing: -0.04em;
   text-decoration: none;
   transition:
-    color 200ms ease,
-    background-color 200ms ease;
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
 }
 
-#about .about__button--outline {
-  background: transparent;
-  color: var(--about-ink);
-}
-
+#about .about__button--outline,
+#about .about__button--solid,
 #about .about__button--outline:hover,
-#about .about__button--outline:focus-visible {
-  background: var(--about-ink);
-  color: var(--about-white);
-}
-
-#about .about__button--solid {
-  background: var(--about-ink);
-  color: var(--about-white);
-}
-
+#about .about__button--outline:focus-visible,
 #about .about__button--solid:hover,
 #about .about__button--solid:focus-visible {
+  background: var(--about-ink);
+  border-color: var(--about-ink);
+  color: var(--about-white);
+}
+
+#about .about__button:hover,
+#about .about__button:focus-visible {
   background: #1a1a1a;
   border-color: #1a1a1a;
-  color: var(--about-white);
+  transform: translateY(-1px);
 }
 
 #about .about__button:focus-visible {
@@ -212,15 +214,13 @@
 }
 
 #about .about__arrow {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 1;
-  transition: transform 200ms ease;
-}
-
-#about .about__button:hover .about__arrow,
-#about .about__button:focus-visible .about__arrow {
-  transform: translateX(4px);
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--about-white);
+  font-size: 0;
+  line-height: 0;
 }
 
 #about .about__visual {
@@ -269,6 +269,11 @@
 
 #about .about__headline-line {
   display: block;
+  margin-bottom: 0.12em;
+}
+
+#about .about__headline-line:last-child {
+  margin-bottom: 0;
 }
 
 #about .about__headline-line--caps {

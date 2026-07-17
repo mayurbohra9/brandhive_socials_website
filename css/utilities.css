@@ -248,21 +248,147 @@ header .framer-kxb2zt-container .framer-uNobG::before {
   }
 }
 
-/* Footer: push "Socials" to the right under BrandHive */
+/* Footer: pin "Socials" to the right end of BrandHive */
+.framer-8QVl3 .framer-pbcowa {
+  position: relative !important;
+}
+
+.framer-8QVl3 .framer-pbcowa > .ssr-variant:has(.framer-x47oxk) {
+  position: absolute !important;
+  left: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
+  display: block !important;
+  transform: none !important;
+}
+
 .framer-8QVl3 .framer-pbcowa .framer-x47oxk {
-  width: 100% !important;
-  align-self: stretch !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
   text-align: right !important;
+  transform: none !important;
 }
 
 .framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
   text-align: right !important;
-  width: 100% !important;
+  width: auto !important;
+  white-space: nowrap !important;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
+    --framer-font-size: 54px !important;
+    font-size: 54px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
+    --framer-font-size: 72px !important;
+    font-size: 72px !important;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .framer-8QVl3 .framer-pbcowa .framer-x47oxk p {
+    --framer-font-size: 40px !important;
+    font-size: 40px !important;
+  }
 }
 
 /* Footer bottom bar: hide Privacy Policy + Terms of Service only */
 .framer-8QVl3 .framer-tlsn55 [data-framer-name="Links"],
 .framer-8QVl3 .framer-tlsn55 [data-framer-name="2"] {
+  display: none !important;
+}
+
+/* Hide footer / menu phone number row (replaced by Hire us + Join us emails) */
+footer [data-framer-name="Contact"] > .framer-14rnmud,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] > .framer-zypsr7,
+footer [data-framer-name="Contact"] a[href^="tel:"],
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a[href^="tel:"] {
+  display: none !important;
+}
+
+/* Stacked Hire us / Join us email blocks — match Join us card style */
+footer [data-framer-name="Contact"] [data-bh-email="join us"],
+[data-framer-name="Bottom"] [data-framer-name="Contact"] [data-bh-email="join us"] {
+  margin-top: 36px;
+}
+
+footer [data-framer-name="Contact"] [data-framer-name="Email Address"],
+footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] [data-framer-name="Email Address"],
+[data-framer-name="Bottom"] [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text {
+  white-space: normal !important;
+}
+
+footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15em;
+  line-height: 1.15 !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 809.98px) {
+  footer [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text,
+  [data-framer-name="Bottom"] [data-framer-name="Contact"] [data-framer-name="Email Address"] .framer-text {
+    font-size: 18px !important;
+  }
+}
+
+footer [data-framer-name="Contact"] .bh-email-heading,
+footer [data-framer-name="Contact"] .bh-email-address,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] .bh-email-heading,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] .bh-email-address {
+  display: block;
+}
+
+/* Same hover for Hire us + Join us (plus rotates, underline fades) */
+footer [data-framer-name="Contact"] a.framer-XRBqV .framer-149v3n5-container,
+footer [data-framer-name="Contact"] a.framer-XRBqV .framer-mF96D,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV .framer-149v3n5-container,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV .framer-mF96D {
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transform-origin: center center !important;
+  will-change: transform;
+}
+
+footer [data-framer-name="Contact"] a.framer-XRBqV .framer-1wpm5k9,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV .framer-1wpm5k9 {
+  opacity: 1 !important;
+  transition: opacity 350ms ease !important;
+}
+
+footer [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-149v3n5-container,
+footer [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-149v3n5-container,
+footer [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-mF96D,
+footer [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-mF96D,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-149v3n5-container,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-149v3n5-container,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-mF96D,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-mF96D {
+  transform: rotate(90deg) !important;
+}
+
+footer [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-1wpm5k9,
+footer [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-1wpm5k9,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:hover .framer-1wpm5k9,
+[data-framer-name="Bottom"] [data-framer-name="Contact"] a.framer-XRBqV:focus-visible .framer-1wpm5k9 {
+  opacity: 0 !important;
+}
+
+/* Hide Dribbble from footer Social */
+footer [data-framer-name="Social"] .framer-1tsabm-container,
+footer [data-framer-name="Social"] a[href*="dribbble"] {
   display: none !important;
 }
 
@@ -310,6 +436,97 @@ header .framer-kxb2zt-container .framer-uNobG::before {
   height: 100%;
   position: relative;
   overflow: hidden;
+}
+
+/* Testimonials: 7 reviews. Let the card grid wrap to extra rows and let
+   cards grow to fit full quotes (no clipping). Design/typography unchanged;
+   only card padding is slightly reduced so longer reviews fit naturally. */
+.framer-rkHvP .framer-mr0vhf {
+  height: auto !important;
+  grid-template-rows: none !important;
+  grid-auto-rows: auto !important;
+}
+
+.framer-rkHvP .framer-mr0vhf > * {
+  place-self: stretch !important;
+  height: auto !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.framer-rkHvP .framer-mr0vhf > * > * {
+  flex: 1 0 auto;
+}
+
+/* Card root: auto height with a shared minimum so rows stay even. */
+.framer-mr0vhf .framer-k80mU.framer-1xa06lp {
+  height: 100% !important;
+  min-height: 430px;
+}
+
+/* Slightly tighter card padding to absorb the longer copy. */
+.framer-mr0vhf .framer-k80mU .framer-1nedhuv,
+.framer-mr0vhf .framer-k80mU .framer-1flz52s {
+  padding: 24px;
+}
+
+/* Quote block keeps natural height; never clip text. */
+.framer-mr0vhf .framer-k80mU .framer-1flz52s {
+  height: auto !important;
+  min-height: 0;
+}
+
+.framer-mr0vhf .framer-k80mU .framer-j1a15y {
+  overflow: visible !important;
+}
+
+/* Smaller quote type for longer reviews. */
+.framer-mr0vhf .framer-k80mU .framer-j1a15y .framer-text,
+.framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
+  --framer-font-size: 20px !important;
+  --framer-line-height: 120% !important;
+}
+
+/* Hide the "56+" avatar-stack count badge in Testimonials. */
+.framer-rkHvP .framer-mr0vhf .framer-1xp3t2u[data-framer-name="Rating Count"],
+.framer-rkHvP section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Rating Count"],
+section[data-framer-name="Testimonials"] .framer-1xp3t2u[data-framer-name="Rating Count"] {
+  display: none !important;
+}
+
+/* Intro tile (rating + Book a call) fills its row like the cards. */
+.framer-rkHvP .framer-mr0vhf .framer-1gh0xjw {
+  height: 100% !important;
+}
+
+@media (max-width: 1199px) and (min-width: 810px) {
+  .framer-rkHvP .framer-mr0vhf .framer-1gh0xjw,
+  .framer-rkHvP .framer-mr0vhf .framer-q96ctn-container,
+  .framer-rkHvP .framer-mr0vhf .framer-1hllsft-container,
+  .framer-rkHvP .framer-mr0vhf .framer-181puib-container,
+  .framer-rkHvP .framer-mr0vhf [data-bh-extra] {
+    height: auto !important;
+    min-height: 420px;
+  }
+
+  .framer-mr0vhf .framer-k80mU .framer-j1a15y .framer-text,
+  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
+    --framer-font-size: 18px !important;
+  }
+}
+
+@media (max-width: 809px) {
+  .framer-mr0vhf .framer-k80mU.framer-1xa06lp,
+  .framer-mr0vhf .framer-k80mU.framer-v-hfi02n.framer-1xa06lp {
+    height: auto !important;
+    min-height: 0;
+  }
+
+  .framer-mr0vhf .framer-k80mU .framer-j1a15y .framer-text,
+  .framer-mr0vhf .framer-k80mU .framer-styles-preset-1hin0ji {
+    --framer-font-size: 18px !important;
+    --framer-line-height: 125% !important;
+  }
 }
 
 /* Force-hide leftover Framer promo/template badges across all breakpoints. */

@@ -16,6 +16,15 @@
   var DESIRED_TITLE =
     "BrandHive Socials – Web Design, Branding & Digital Growth";
   var FOOTER_COPYRIGHT = "© 2026 BrandHive Socials. All rights reserved.";
+  var FOOTER_HIRE_EMAIL = "saakshi@brandhivesocials.com";
+  var FOOTER_JOIN_EMAIL = "careers@brandhivesocials.com";
+  var FOOTER_HIRE_HEADING = "Hire us:";
+  var FOOTER_JOIN_HEADING = "Join us:";
+  var FOOTER_HIRE_LABEL = FOOTER_HIRE_HEADING + " " + FOOTER_HIRE_EMAIL;
+  var FOOTER_JOIN_LABEL = FOOTER_JOIN_HEADING + " " + FOOTER_JOIN_EMAIL;
+  var FOOTER_INSTAGRAM_URL = "https://www.instagram.com/brandhivesocials/";
+  var FOOTER_LINKEDIN_URL =
+    "https://www.linkedin.com/company/brandhive-socials/";
   var HERO_LEAD = "No generic branding. No empty content strategies.";
   var HERO_DETAIL =
     "Just LinkedIn profiles, content, and positioning that help founders, CXOs, and business leaders attract qualified leads and build lasting authority.";
@@ -301,24 +310,178 @@
   }
 
   function fixFooterLogo() {
-    var logo = document.querySelector('footer [data-framer-name="Logo"]');
+    var logo = document.querySelector(
+      'footer [data-framer-name="Logo"], footer .framer-pbcowa, .framer-8QVl3 .framer-pbcowa',
+    );
     if (!logo) return;
     var svg = logo.querySelector("svg.framer-1w026i8, svg");
     if (!svg) return;
-    var p = svg.querySelector("p");
-    if (!p) return;
+    var brandP = svg.querySelector("p");
+    if (!brandP) return;
 
     // Ensure word is complete after hydration.
     if (
-      /BrandHiv/i.test(p.textContent) &&
-      p.textContent.replace(/\s+/g, "") !== "BrandHive"
+      /BrandHiv/i.test(brandP.textContent) &&
+      brandP.textContent.replace(/\s+/g, "") !== "BrandHive"
     ) {
-      p.textContent = "BrandHive";
+      brandP.textContent = "BrandHive";
     }
 
     svg.style.overflow = "visible";
     var fo = svg.querySelector("foreignObject");
     if (fo) fo.style.overflow = "visible";
+
+    // Pin "Socials" so its right edge lines up with the end of "BrandHive".
+    logo.style.position = "relative";
+    var socialWraps = logo.querySelectorAll(".ssr-variant");
+    var brandRange = document.createRange();
+    brandRange.selectNodeContents(brandP);
+    var brandRect = brandRange.getBoundingClientRect();
+    var logoRect = logo.getBoundingClientRect();
+    if (!brandRect.width) return;
+
+    var rightEdge = Math.max(0, brandRect.right - logoRect.left);
+    var fontSize =
+      window.innerWidth >= 1200 ? "72px" : window.innerWidth >= 810 ? "54px" : "40px";
+
+    socialWraps.forEach(function (wrap) {
+      if (!wrap.querySelector(".framer-x47oxk")) return;
+      wrap.style.setProperty("position", "absolute", "important");
+      wrap.style.setProperty("left", rightEdge + "px", "important");
+      wrap.style.setProperty("right", "auto", "important");
+      wrap.style.setProperty("top", svg.offsetHeight + "px", "important");
+      wrap.style.setProperty("bottom", "auto", "important");
+      wrap.style.setProperty("width", "max-content", "important");
+      wrap.style.setProperty("transform", "translateX(-100%)", "important");
+      wrap.style.setProperty("margin", "0", "important");
+
+      var text = wrap.querySelector(".framer-x47oxk p, p.framer-text");
+      if (text) {
+        text.style.setProperty("font-size", fontSize, "important");
+        text.style.setProperty("--framer-font-size", fontSize, "important");
+        text.style.setProperty("text-align", "right", "important");
+        text.style.setProperty("white-space", "nowrap", "important");
+      }
+    });
+
+    // Keep layout height for the absolutely positioned Socials line.
+    var socialSample = logo.querySelector(".framer-x47oxk p");
+    var socialH = socialSample
+      ? Math.ceil(socialSample.getBoundingClientRect().height || 48)
+      : 48;
+    logo.style.paddingBottom = socialH + 8 + "px";
+  }
+
+  function setStackedEmailText(textEl, heading, email) {
+    if (!textEl) return;
+    var current = textEl.textContent.replace(/\s+/g, " ").trim();
+    var desired = heading + " " + email;
+    if (
+      current === desired &&
+      textEl.querySelector &&
+      textEl.querySelector(".bh-email-heading")
+    ) {
+      return;
+    }
+    textEl.textContent = "";
+    var headingEl = document.createElement("span");
+    headingEl.className = "bh-email-heading";
+    headingEl.textContent = heading;
+    var emailEl = document.createElement("span");
+    emailEl.className = "bh-email-address";
+    emailEl.textContent = email;
+    textEl.appendChild(headingEl);
+    textEl.appendChild(emailEl);
+  }
+
+  function applyEmailBlock(container, heading, email) {
+    if (!container) return;
+    container.setAttribute("data-bh-email", heading.replace(/:$/, "").toLowerCase());
+    container.querySelectorAll("a[href]").forEach(function (a) {
+      a.setAttribute("href", "mailto:" + email);
+      var textEl =
+        a.querySelector('[data-framer-name="Email Address"] .framer-text') ||
+        a.querySelector('[data-framer-name="Email Address"] p') ||
+        a.querySelector("p.framer-text");
+      setStackedEmailText(textEl, heading, email);
+    });
+  }
+
+  function fixFooterContactAndSocial() {
+    var roots = document.querySelectorAll(
+      'footer [data-framer-name="Contact"], [data-framer-name="Bottom"] [data-framer-name="Contact"]',
+    );
+
+    roots.forEach(function (root) {
+      // Hide original phone / plain-text row
+      Array.prototype.forEach.call(root.children, function (child) {
+        if (
+          child.classList.contains("framer-14rnmud") ||
+          child.classList.contains("framer-zypsr7")
+        ) {
+          child.style.setProperty("display", "none", "important");
+        }
+      });
+      root.querySelectorAll('a[href^="tel:"], a[href^="Tel:"]').forEach(
+        function (a) {
+          a.style.setProperty("display", "none", "important");
+        },
+      );
+
+      var emailContainers = root.querySelectorAll(
+        ":scope > .framer-1qul2xg-container, :scope > .framer-1cprrbp-container",
+      );
+      if (!emailContainers.length) return;
+
+      var hireContainer = null;
+      Array.prototype.forEach.call(emailContainers, function (container) {
+        if (
+          !hireContainer &&
+          container.getAttribute("data-bh-email") !== "join us"
+        ) {
+          hireContainer = container;
+        }
+      });
+      if (!hireContainer) return;
+
+      applyEmailBlock(hireContainer, FOOTER_HIRE_HEADING, FOOTER_HIRE_EMAIL);
+
+      var join = root.querySelector('[data-bh-email="join us"]');
+      if (!join) {
+        join = hireContainer.cloneNode(true);
+        join.setAttribute("data-bh-email-clone", "true");
+        hireContainer.parentNode.insertBefore(
+          join,
+          hireContainer.nextSibling,
+        );
+      }
+      applyEmailBlock(join, FOOTER_JOIN_HEADING, FOOTER_JOIN_EMAIL);
+    });
+
+    document
+      .querySelectorAll('footer [data-framer-name="Social"] a')
+      .forEach(function (a) {
+        var text = (a.textContent || "").replace(/\s+/g, " ").trim();
+        if (/Twitter|LinkedIn/i.test(text)) {
+          a.setAttribute("href", FOOTER_LINKEDIN_URL);
+          a.querySelectorAll("p.framer-text, .framer-text").forEach(
+            function (el) {
+              var t = (el.textContent || "").trim();
+              if (/^(Twitter|LinkedIn)$/i.test(t)) el.textContent = "LinkedIn";
+            },
+          );
+        }
+        if (/Instagram/i.test(text)) {
+          a.setAttribute("href", FOOTER_INSTAGRAM_URL);
+        }
+        if (
+          /Dribbble/i.test(text) ||
+          /dribbble\.com/i.test(a.getAttribute("href") || "")
+        ) {
+          var wrap = a.closest(".framer-1tsabm-container") || a;
+          wrap.style.display = "none";
+        }
+      });
   }
 
   function fixHeroCopy() {
@@ -727,20 +890,38 @@
   }
 
   function dismissStuckPreloader() {
-    var overlay = document.querySelector(".framer-1lgjvo2-container");
+    var overlay =
+      document.querySelector(".framer-1lgjvo2-container") ||
+      document.querySelector('[data-framer-appear-id="1b4e3p4"]');
     if (!overlay) return;
-    var shell = overlay.parentElement && overlay.parentElement.parentElement;
-    if (!shell) return;
-    // Only force-hide if still covering the viewport after load.
-    var style = window.getComputedStyle(shell);
-    if (style.position === "fixed" && style.zIndex === "9999") {
-      shell.style.opacity = "0";
-      shell.style.pointerEvents = "none";
-      shell.style.visibility = "hidden";
-      setTimeout(function () {
-        if (shell && shell.parentNode) shell.parentNode.removeChild(shell);
-      }, 400);
+
+    var shell = overlay.closest
+      ? overlay.closest('[style*="z-index"], .framer-1lgjvo2-container')
+      : null;
+    // Walk up a few parents to find the fixed full-screen shell.
+    var node = overlay;
+    for (var i = 0; i < 6 && node; i++) {
+      try {
+        var style = window.getComputedStyle(node);
+        if (
+          style.position === "fixed" &&
+          (parseInt(style.zIndex, 10) >= 1000 || style.zIndex === "9999")
+        ) {
+          shell = node;
+          break;
+        }
+      } catch (e) {}
+      node = node.parentElement;
     }
+    if (!shell) shell = overlay.parentElement && overlay.parentElement.parentElement;
+    if (!shell) return;
+
+    shell.style.opacity = "0";
+    shell.style.pointerEvents = "none";
+    shell.style.visibility = "hidden";
+    setTimeout(function () {
+      if (shell && shell.parentNode) shell.parentNode.removeChild(shell);
+    }, 400);
   }
 
   function applyAll() {
@@ -752,6 +933,7 @@
     fixTitle();
     fixFooterCopyright();
     fixFooterLogo();
+    fixFooterContactAndSocial();
     fixHeroCopy();
     fixHeroServices();
     fixFounderCard();
@@ -828,8 +1010,17 @@
     [2000, 5000].forEach(function (delay) {
       setTimeout(applyAll, delay);
     });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        fixFooterLogo();
+      });
+    }
+    window.addEventListener("resize", function () {
+      fixFooterLogo();
+    });
     // Failsafe if Framer preloader never dismisses.
-    setTimeout(dismissStuckPreloader, 4500);
+    setTimeout(dismissStuckPreloader, 3500);
+    setTimeout(dismissStuckPreloader, 6500);
   }
 
   if (document.body) start();
